@@ -1,0 +1,34 @@
+GBuX Token - Solana SPL Token Implementation
+GBuX is the native in-game currency for Nexus Nemesis, a Web3 trading card game. This package contains the complete source code for GBuX token integration on Solana blockchain.
+
+Token Details
+Name: GBuX Token
+Symbol: GBUX
+Contract Address: 55TpSoMNxbfsNJ9U1dQoo9H3dRtDmjBZVMcKqvU2nray
+Network: Solana Mainnet
+Decimals: 9
+Standard: SPL Token
+Features
+Real-time balance tracking
+Solana Web3.js integration
+Token holder analytics
+Exchange rate monitoring
+Wallet management
+Trading widget integration
+Installation
+npm install @solana/web3.js @solana/spl-token
+Quick Start
+import { GBuXService } from './src/gbux-service';
+const gbuxService = new GBuXService();
+const balance = await gbuxService.getTokenBalance(walletAddress);
+API Reference
+GBuXService
+getTokenBalance(address: string) - Get GBuX balance for wallet
+getTokenInfo() - Get token metadata
+getTopHolders() - Get top 20 token holders
+trackTransfers(callback) - Monitor token transfers
+Contributing
+This is part of the Nexus Nemesis game ecosystem by Grudge Studio.
+
+License
+MIT License
