@@ -1,0 +1,42 @@
+{
+  "name": "gbux-token",
+  "version": "1.0.0",
+  "description": "GBuX Token implementation for Solana blockchain - Nexus Nemesis in-game currency",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "test": "jest"
+  },
+  "keywords": [
+    "solana",
+    "spl-token",
+    "gbux",
+    "blockchain",
+    "web3",
+    "gaming",
+    "nexus-nemesis"
+  ],
+  "author": "Grudge Studio",
+  "license": "MIT",
+  "dependencies": {
+    "@solana/web3.js": "^1.87.6",
+    "@solana/spl-token": "^0.3.9"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.0.0",
+    "jest": "^29.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grudge-studio/gbux-token.git"
+  },
+  "bugs": {
+    "url": "https://github.com/grudge-studio/gbux-token/issues"
+  },
+  "homepage": "https://github.com/grudge-studio/gbux-token#readme"
+}
