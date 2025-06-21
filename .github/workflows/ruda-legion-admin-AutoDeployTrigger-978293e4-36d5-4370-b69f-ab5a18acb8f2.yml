@@ -1,0 +1,48 @@
+name: Trigger auto deployment for ruda-legion-admin
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - '**'
+    - '.github/workflows/ruda-legion-admin-AutoDeployTrigger-978293e4-36d5-4370-b69f-ab5a18acb8f2.yml'
+
+  # Allow manual trigger 
+  workflow_dispatch:      
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions: 
+      id-token: write #This is required for requesting the OIDC JWT Token
+      contents: read #Required when GH token is used to authenticate with private repo
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.RUDALEGIONADMIN_AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.RUDALEGIONADMIN_AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.RUDALEGIONADMIN_AZURE_SUBSCRIPTION_ID }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          appSourcePath: ${{ github.workspace }}/dockerfile
+          _dockerfilePathKey_: _dockerfilePath_
+          registryUrl: api.gruda.network
+          registryUsername: ${{ secrets.RUDALEGIONADMIN_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.RUDALEGIONADMIN_REGISTRY_PASSWORD }}
+          containerAppName: ruda-legion-admin
+          resourceGroup: rg-gruda-legion
+          imageToBuild: api.gruda.network/ruda-legion-admin:${{ github.sha }}
+          _buildArgumentsKey_: |
+            _buildArgumentsValues_
+
+
